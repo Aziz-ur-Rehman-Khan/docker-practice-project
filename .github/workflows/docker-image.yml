@@ -23,6 +23,6 @@ jobs:
         registry: docker.io
         username: ${{secrets.DOCKER_USERNAME}}
         password: ${{secrets.DOCKER_PASSWORD}}
-        tag: ${{ steps.meta.outputs.tag }}
+        tag: v1.0
 
   
