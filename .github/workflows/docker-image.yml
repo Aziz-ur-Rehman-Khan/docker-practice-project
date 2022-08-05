@@ -23,6 +23,6 @@ jobs:
         registry: docker.io
         username: ${{secrets.DOCKER_USERNAME}}
         password: ${{secrets.DOCKER_PASSWORD}}
-        tags: ${{secrets.DOCKER_USERNAME}}/sqlite-test-app:latest
+        tag: ${{secrets.DOCKER_USERNAME}}/sqlite-test-app:latest
 
   
