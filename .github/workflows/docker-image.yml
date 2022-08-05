@@ -17,11 +17,12 @@ jobs:
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag sqlite-docker-image:$(date +%s)
     - name: Build and Push Image to Dockerhub
-    - uses: mr-smithers-excellent/docker-build-push@v4
+      uses: mr-smithers-excellent/docker-build-push@v4
       with: 
-         image: azizurehmankhan/sqlite-test-app
-         registry: docker.io
-         username: ${{secrets.DOCKER_USERNAME}}
-         password: ${{secrets.DOCKER_PASSWORD}}
-         tags: ${{secrets.DOCKER_USERNAME}}/sqlite-test-app:latest
+        image: azizurehmankhan/sqlite-test-app
+        registry: docker.io
+        username: ${{secrets.DOCKER_USERNAME}}
+        password: ${{secrets.DOCKER_PASSWORD}}
+        tags: ${{secrets.DOCKER_USERNAME}}/sqlite-test-app:latest
 
+  
