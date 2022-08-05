@@ -1,28 +1,39 @@
-name: Docker Image CI
-
+name: "Ruby on Rails CI"
 on:
   push:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
-
 jobs:
- 
-  build:
-
-    runs-on: ubuntu-latest
-
-    steps:
-    - uses: actions/checkout@v3
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag sqlite-docker-image:$(date +%s)
-    - name: Build and Push Image to Dockerhub
-      uses: mr-smithers-excellent/docker-build-push@v4
-      with: 
-        image: azizurehmankhan/sqlite-test-app
-        registry: docker.io
-        username: ${{secrets.DOCKER_USERNAME}}
-        password: ${{secrets.DOCKER_PASSWORD}}
-        tag: v1.0
-
+  test:
   
+    runs-on: ubuntu-latest
+      
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        
+      - name: Install Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '2.7.2'
+          
+      - name: Build and run tests
+        env:
+          RAILS_ENV: test
+        run: |
+          sudo apt-get install libsqlite3-dev
+          gem install bundler
+          bundle install --jobs 4 --retry 3
+          bundle exec rails test
+          
+      - name: Build and Push Image to Dockerhub
+        uses: mr-smithers-excellent/docker-build-push@v4
+        with: 
+          image: azizurehmankhan/sqlite-test-app
+          registry: docker.io
+          username: ${{secrets.DOCKER_USERNAME}}
+          password: ${{secrets.DOCKER_PASSWORD}}
+          tags: v1, latest
+
+
