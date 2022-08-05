@@ -9,16 +9,17 @@ RUN apk add --update ruby-dev\
 
 RUN mkdir -p /dockerails
 
-COPY . /dockerails
-COPY ./Gemfile dockerails/Gemfile
-COPY ./Gemfile.lock dockerails/Gemfile.lock
-#COPY ./entrypoint.sh /usr/bin/entrypoint.sh
-
-WORKDIR /dockerails
-RUN chmod +x /entrypoint.sh
-
+WORKDIR /dockerails/
+COPY Gemfile Gemfile.lock ./
 RUN gem install bundler
 RUN bundle install
+COPY . ./
+
+COPY entrypoint.sh /usr/bin/
+
+
+RUN chmod +x /usr/bin/entrypoint.sh
+
 
 EXPOSE 3000
 ENTRYPOINT ["entrypoint.sh"]
