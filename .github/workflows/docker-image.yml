@@ -28,7 +28,7 @@ jobs:
           bundle exec rails test
           
       - name: Build and Push Image to Dockerhub
-        uses: mr-smithers-excellent/docker-build-push@v4
+        uses: mr-smithers-excellent/docker-build-push@v5
         with: 
           image: azizurehmankhan/sqlite-test-app
           registry: docker.io
