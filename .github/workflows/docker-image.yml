@@ -18,13 +18,18 @@ jobs:
         with:
           ruby-version: '2.7.2'
           
-      - name: Build and run tests
+      - name: Dependencies n Gems
         env:
           RAILS_ENV: test
         run: |
           sudo apt-get install libsqlite3-dev
           gem install bundler
           bundle install --jobs 4 --retry 3
+       
+      - name: Dependencies n Gems
+        env:
+          RAILS_ENV: test
+        run: |
           bundle exec rails test
           
       - name: Build and Push Image to Dockerhub
