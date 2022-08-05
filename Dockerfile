@@ -15,7 +15,7 @@ COPY ./Gemfile.lock dockerails/Gemfile.lock
 #COPY ./entrypoint.sh /usr/bin/entrypoint.sh
 
 WORKDIR /dockerails
-RUN chmod +x /usr/bin/entrypoint.sh
+RUN chmod +x /entrypoint.sh
 
 RUN gem install bundler
 RUN bundle install
