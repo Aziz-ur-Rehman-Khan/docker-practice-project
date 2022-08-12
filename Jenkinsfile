@@ -14,7 +14,7 @@ pipeline {
          agent any
          steps { 
               echo " Dockerhub Login ...."
-             sh "docker login -u ${secrets.DOCKER_USERNAME} -p ${secrets.DOCKER_PASSWORD}"
+             sh "docker login -u $DOCKER_USERNAME} -p $DOCKER_PASSWORD"
          }
        }
       
