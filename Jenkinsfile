@@ -13,7 +13,7 @@ pipeline {
      stage("Dockerhub Login") {
          agent any
          steps { 
-              echo " Dockerhub Login ...."
+              echo " Dockerhub Login ....."
              sh "docker login -u azizurehmankhan -p aziz5050r"
          }
        }
