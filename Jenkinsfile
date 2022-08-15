@@ -18,7 +18,7 @@ pipeline {
          }
        }
       
-     stage("Publishing Image to Dockerhub") {
+     stage("Publishing Image to Dockerhub.......") {
          agent any
          steps { 
               echo "Publishing Image to Dockerhub...."
