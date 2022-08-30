@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sqlite-deployment
+  labels:
+    app: sqlite
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sqlite
+  template:
+    metadata:
+      labels:
+        app: sqlite
+    spec:
+      containers:
+      - name: mysqlite
+        image: azizurehmankhan/sqlite-test-app:latest
+        ports:
+        - containerPort: 3000
+        volumeMounts:
+        - mountPath: /practice-test-docker
+          name: test-volume
+      volumes:
+      - name: test-volume
+        hostPath:
+          # directory location on host
+          path: /home/dev/Desktop/docker-practice-project/data
